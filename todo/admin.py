@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import TaskGroup, ToDoItem
 
-# Register your models here.
+admin.site.register(TaskGroup)
+admin.site.register(ToDoItem)
