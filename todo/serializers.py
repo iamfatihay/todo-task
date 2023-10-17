@@ -1,6 +1,14 @@
 from rest_framework import serializers
-from .models import Todo
-class TodoSerializer(serializers.ModelSerializer):
+from .models import ToDoItem, TaskGroup
+
+
+class TodoItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Todo
+        model=ToDoItem
+        fields=("__all__")
+
+
+class TaskGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=TaskGroup
         fields=("__all__")
