@@ -1,13 +1,11 @@
-from django.urls import path, include
-from .views import TodoItemMVS, TaskGroupMVS
-from rest_framework import routers
-
-router=routers.DefaultRouter()
-router.register("/api/todo/", TodoItemMVS)
-router.register("/api/todo-group", TaskGroupMVS)
+from django.urls import path
+from .views import todo_list_create, todo_get_delete_update, task_groups, soft_deleted_items
 
 
 urlpatterns = [
-    path("", include(router.urls))
+    path("api/todo/", todo_list_create),
+    path("api/todo/<int:pk>", todo_get_delete_update),
+    path("api/groups", task_groups),
+    path("api/todo-deleted", soft_deleted_items),
 ]
 
