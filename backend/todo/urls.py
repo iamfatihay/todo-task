@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import todo_list_create, todo_get_delete_update, task_groups, soft_deleted_items
+from .views import todo_list_create, todo_get_delete_update, task_groups
 
 
 urlpatterns = [
