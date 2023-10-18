@@ -9,9 +9,17 @@ from rest_framework.status import *
 @api_view(["GET", "POST"])
 def todo_list_create(request):
     if request.method == "GET":
-        todos = ToDoItem.objects.all()
+        # We can filter soft deleted items here
+        include_soft_deleted = request.GET.get("include_soft_deleted", False)
+        
+        if include_soft_deleted:
+            todos = ToDoItem.objects.all()
+        else:
+            todos = ToDoItem.objects.filter(is_deleted=False)
+
         serializer = TodoItemSerializer(todos, many=True)
         return Response(serializer.data)
+    
     elif request.method == "POST":
         serializer = TodoItemSerializer(data=request.data)
         if serializer.is_valid():
@@ -41,18 +49,6 @@ def todo_get_delete_update(request, pk):
         todo.save()
         message = {"message": "Successfully soft deleted!"}
         return Response(message, status=HTTP_204_NO_CONTENT)
-    
-    # elif request.method == "DELETE":
-    #     todo.delete()
-    #     message={"message":"Successfully deleted!"}
-    #     return Response(message, status=HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET'])
-def soft_deleted_items(request):
-    soft_deleted_items = ToDoItem.objects.filter(is_deleted=True)
-    serializer = TodoItemSerializer(soft_deleted_items, many=True)
-    return Response(serializer.data, status=HTTP_200_OK)
 
 
 @api_view(['GET', 'POST'])
@@ -69,3 +65,9 @@ def task_groups(request):
             return Response(serializer.data, status=HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
+
+# @api_view(['GET'])
+# def soft_deleted_items(request):
+#     soft_deleted_items = ToDoItem.objects.filter(is_deleted=True)
+#     serializer = TodoItemSerializer(soft_deleted_items, many=True)
+#     return Response(serializer.data, status=HTTP_200_OK)
