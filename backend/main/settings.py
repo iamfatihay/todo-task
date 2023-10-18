@@ -38,14 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # third parts
+
+    # third party apps:
     'rest_framework',
     'corsheaders',
-    # my_apps
+    'drf_yasg',
+    'debug_toolbar',
+
+    # my_apps:
     'todo',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -134,3 +139,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = (
     'Access-Control-Allow-Origin: *',
 )
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

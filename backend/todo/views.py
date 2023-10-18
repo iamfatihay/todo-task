@@ -66,8 +66,22 @@ def task_groups(request):
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
-# @api_view(['GET'])
-# def soft_deleted_items(request):
-#     soft_deleted_items = ToDoItem.objects.filter(is_deleted=True)
-#     serializer = TodoItemSerializer(soft_deleted_items, many=True)
-#     return Response(serializer.data, status=HTTP_200_OK)
+@api_view(["GET", "PUT", "DELETE"])
+def task_group_get_update_delete(request, pk):
+    task_group = get_object_or_404(TaskGroup, id=pk)
+
+    if request.method == 'GET':
+        serializer = TaskGroupSerializer(task_group)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        serializer = TaskGroupSerializer(data=request.data, instance=task_group)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=HTTP_201_CREATED)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        task_group.delete()
+        message = {"message": "Successfully deleted!"}
+        return Response(message, status=HTTP_204_NO_CONTENT)
