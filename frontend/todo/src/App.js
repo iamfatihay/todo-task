@@ -1,11 +1,15 @@
-import React from "react"
+import React from 'react'
+import "./App.css"
+import Home from './pages/Home'
 
-function App() {
+const BASE_URL = "http://localhost:8000/api"; // Sunucu adresi ve API yolu
+
+const App = () => {
   return (
-    <div >
-      APP
+    <div className="container">
+      <Home baseUrl={BASE_URL} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

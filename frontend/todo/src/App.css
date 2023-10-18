@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(to top, #746f47 0%, #bbb8af 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(184, 116, 39),
+    rgb(199, 180, 190)
+  );
+  margin: 3rem auto;
+  max-width: 600px;
+  padding: 2rem;
+  /* overflow: hidden; */
+  border-radius: 20px;
+}
+
+.header {
+  text-align: center;
+  margin: 1rem;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  color: #8f7b7b;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.form-control input {
+  width: 100%;
+  height: 40px;
+  padding: 1rem;
+  font-size: 17px;
+  border-radius: 8px;
+  border: none;
+}
+
+.btn-submit {
+  /* display: block; */
+  width: 100%;
+  background-color: rgb(56, 50, 56);
+  margin: 2rem 0;
+}
+
+
+.gorev {    /*! henuz yok */
+  background: #f4f4f4;
+  background: yellow;
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.done {      /*! henuz yok */
+  border-left: 10px solid rgb(102, 18, 77);
+  text-decoration: line-through;
+  background-color: darkgrey;
+  padding: 10px 20px;
+
+}
+
+ h3 {        /*! henuz yok */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
