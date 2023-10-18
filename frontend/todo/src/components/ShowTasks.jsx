@@ -1,13 +1,13 @@
 import React from "react";
 import { FaTimesCircle } from "react-icons/fa";
 //!https://react-icons.github.io/react-icons
-const ShowTasks = ({array,setArray, baseUrl}) => {
-// console.log(array);
+const ShowTasks = ({ array, setArray, BASE_URL }) => {
+  // console.log(array);
 
   const updateItem = async (id) => {
     try {
       // API endpoint'ini ve güncellenecek öğenin ID'sini kullanarak PATCH isteği gönderin
-      const response = await fetch(`${baseUrl}/todo/${id}`, {
+      const response = await fetch(`${BASE_URL}/todo/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
