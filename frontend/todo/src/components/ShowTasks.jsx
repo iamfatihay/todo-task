@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTimesCircle } from "react-icons/fa";
 //!https://react-icons.github.io/react-icons
-const GorevleriGoster = ({array,setArray, baseUrl}) => {
+const ShowTasks = ({array,setArray, baseUrl}) => {
 // console.log(array);
 
   const updateItem = async (id) => {
@@ -65,4 +65,4 @@ const GorevleriGoster = ({array,setArray, baseUrl}) => {
   );
 };
 
-export default GorevleriGoster;
+export default ShowTasks;

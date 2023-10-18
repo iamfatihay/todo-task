@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GorevEkle = ({array,setArray}) => {
+const AddTask = ({array,setArray}) => {
  
     const [isContainerVisible, setContainerVisible] = useState(false);
     const[task,setTask]=useState("");
@@ -74,4 +74,4 @@ const GorevEkle = ({array,setArray}) => {
   );
 };
 
-export default GorevEkle;
+export default AddTask;

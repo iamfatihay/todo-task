@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from "react";
-import GorevEkle from "../components/GorevEkle";
-import GorevleriGoster from "../components/GorevleriGoster";
+import AddTask from "../components/AddTask";
+import ShowTasks from "../components/ShowTasks";
 
 const Home = ({ baseUrl }) => {
   const [array, setArray] = useState([]);
 
-  // Verileri API'den çekmek için kullanılacak fonksiyon
+  //* Function to use to fetch data from API
   const fetchData = async () => {
     try {
-      const response = await fetch(`${baseUrl}/todo`); // BASE_URL'i kullanarak API endpoint'ini belirtin
+      const response = await fetch(`${baseUrl}/todo`); //* Specify API endpoint using BASE_URL
       if (!response.ok) {
-        throw new Error("Veriler alınamadı.");
+        throw new Error("Could not retrieve data.");
       }
       const data = await response.json();
       setArray(data);
     } catch (error) {
-      console.error("Hata:", error);
+      console.error("Error:", error);
     }
   };
 
-  // Sayfa yüklendiğinde verileri çek
+  //* Fetch data when page loads
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
-  }, []);
+  }, [array]);
 
   return (
     <div>
-      <GorevEkle array={array} setArray={setArray} baseUrl={baseUrl}/>
-      <GorevleriGoster array={array} setArray={setArray} baseUrl={baseUrl}/>
+      <AddTask array={array} setArray={setArray} baseUrl={baseUrl}/>
+      <ShowTasks array={array} setArray={setArray} baseUrl={baseUrl}/>
     </div>
   );
 };
