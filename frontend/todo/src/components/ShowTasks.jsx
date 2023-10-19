@@ -4,7 +4,7 @@ import EditItemForm from "./EditItemForm";
 //!https://react-icons.github.io/react-icons
 
 
-const ShowTasks = ({ group, array, setArray, BASE_URL }) => {
+const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   const [editMode, setEditMode] = useState(false);
   const [editingItemId, setEditingItemId] = useState(null);
 
@@ -82,7 +82,7 @@ const ShowTasks = ({ group, array, setArray, BASE_URL }) => {
                 {item.description && <p>{item.description}</p>}
                 <p>
                   Due Date:{" "}
-                  {new Date(item.due_date).toLocaleString("tr-TR", {
+                  {new Date(item.due_date).toLocaleString("de-DE", {
                     year: "numeric",
                     month: "2-digit",
                     day: "2-digit",
@@ -90,6 +90,7 @@ const ShowTasks = ({ group, array, setArray, BASE_URL }) => {
                     minute: "2-digit",
                   })}
                 </p>
+                <p>Group: {item.group}</p>
 
                 <div className="buttons">
                   <button onClick={() => updateItem(item.id)}>
