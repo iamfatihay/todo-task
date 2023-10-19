@@ -5,7 +5,7 @@ import ShowTasks from "../components/ShowTasks";
 
 const Home = ({ BASE_URL }) => {
   const [array, setArray] = useState([]);
-  const [group, setGroup] = useState([]);
+  const [groups, setGroups] = useState([]);
 
   // Function to use to fetch tasks from API
   const fetchTasks = async () => {
@@ -28,7 +28,7 @@ const Home = ({ BASE_URL }) => {
         throw new Error("Could not retrieve data.");
       }
       const data = await response.json();
-      setGroup(data);
+      setGroups(data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -43,8 +43,8 @@ const Home = ({ BASE_URL }) => {
 
   return (
     <div>
-      <AddTask array={array} setArray={setArray} BASE_URL={BASE_URL}/>
-      <ShowTasks group={group} array={array} setArray={setArray} BASE_URL={BASE_URL}/>
+      <AddTask groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}/>
+      <ShowTasks groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}/>
     </div>
   );
 };

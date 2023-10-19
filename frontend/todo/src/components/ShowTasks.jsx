@@ -8,34 +8,23 @@ const ShowTasks = ({ group, array, setArray, BASE_URL }) => {
   const [editMode, setEditMode] = useState(false);
   const [editingItemId, setEditingItemId] = useState(null);
 
-  const updateItem = async (id) => {
+  const updateItem = async (id, editedItem) => {
     try {
-      // Find the item to update
-      const itemToUpdate = array.find((item) => item.id === id);
-
-      if (!itemToUpdate) {
-        console.error("Item not found.");
-        return;
-      }
-
-      // Toggle the is_completed value
-      itemToUpdate.is_completed = !itemToUpdate.is_completed;
-
       // Send a PUT request using the API endpoint and the updated item
       const response = await fetch(`${BASE_URL}/todo/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(itemToUpdate), // Include the entire item
+        body: JSON.stringify(editedItem), // Use the editedItem
       });
-
+  
       if (!response.ok) {
         throw new Error("Update operation failed.");
       }
-
+  
       // Updating data
-      const updatedArray = array.map((item) => (item.id === id ? itemToUpdate : item));
+      const updatedArray = array.map((item) => (item.id === id ? editedItem : item));
       setArray(updatedArray);
       // After updating, close the edit mode
       setEditMode(false);
@@ -69,13 +58,16 @@ const ShowTasks = ({ group, array, setArray, BASE_URL }) => {
     setEditingItemId(id);
   };
 
+  const handleEditItem = (editedItem) => {
+    updateItem(editingItemId, editedItem);
+  };
 
   return (
     <div>
       {editMode ? (
         <EditItemForm
           item={array.find((item) => item.id === editingItemId)}
-          onSave={updateItem}
+          onSave={handleEditItem}
           onCancel={() => setEditMode(false)}
         />
       ) : (
