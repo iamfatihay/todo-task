@@ -1,9 +1,11 @@
 from django.db import models
+import pytz
+
 
 class ToDoItem(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    due_date = models.CharField(max_length=50) # With CharField, date and time information is stored as text.
+    due_date = models.DateTimeField(auto_now=False, auto_now_add=False)
     is_completed = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     group = models.ForeignKey('TaskGroup', on_delete=models.SET_NULL, blank=True, null=True)

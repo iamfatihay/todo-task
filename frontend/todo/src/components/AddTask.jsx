@@ -15,10 +15,9 @@ const AddTask = ({ array, setArray, BASE_URL }) => {
       return;
     }
 
-    const formattedDueDate = selectedDate.toISOString().split("T")[0]; // Format the date
     const newTask = {
       title: task,
-      due_date: formattedDueDate,
+      due_date: selectedDate.toISOString(), // Convert selectedDate to ISO format
       is_completed: false,
       is_deleted: false,
       group: null,
