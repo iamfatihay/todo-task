@@ -90,7 +90,7 @@ const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
                     minute: "2-digit",
                   })}
                 </p>
-                <p>Group: {item.group}</p>
+                <p>Group: {item.group_name}</p>
 
                 <div className="buttons">
                   <button onClick={() => updateItem(item.id)}>

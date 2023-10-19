@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import ShowGroups from "./ShowGroups";
 
 const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   const [isContainerVisible, setContainerVisible] = useState(false);
@@ -27,11 +28,15 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       group: group,
     };
 
+    console.log("newTask:", newTask);
+
     setSubmitting(true); // Set submitting to true before making the request
 
     axios
       .post(`${BASE_URL}/todo/`, newTask)
       .then((response) => {
+        // API yanıtını konsola yazdır
+        console.log("API response:", response);
         // Successfully sent
         console.log("Task sent successfully:", response.data);
         // Add the newly created task to the array
@@ -46,7 +51,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
         setTask(""); // Clear task
         setDescription(""); // Clear description
         setSelectedDate(null); // Clear selectedDate
-        setGroup("");
+        setGroup(""); // Clear group
       });
   };
 
@@ -95,6 +100,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
         <button className="btn" onClick={handleGroupButtonClick}>
           ADD GROUP
         </button>
+        <ShowGroups groups={groups} BASE_URL={BASE_URL} />
       </header>
       {isContainerVisible && (
         <form onSubmit={sendTask}>
@@ -116,7 +122,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
               id="description"
               type="description"
               name="description"
-              placeholder="Add Task"
+              placeholder="Add Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               disabled={submitting} // Disable the input while submitting
@@ -134,10 +140,10 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
             />
           </div>
           <div className="form-control">
-            <label htmlFor="group">Group</label>
+            <label htmlFor="text">Group</label>
             <select
-              id="group"
-              name="group"
+              id="text"
+              name="text"
               value={group}
               onChange={(e) => setGroup(e.target.value)}
             >

@@ -45,6 +45,7 @@ const Home = ({ BASE_URL }) => {
     <div>
       <AddTask groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}/>
       <ShowTasks groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}/>
+      
     </div>
   );
 };
