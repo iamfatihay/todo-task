@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import ShowGroups from "./ShowGroups";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   const [isContainerVisible, setContainerVisible] = useState(false);
@@ -35,12 +36,14 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       .then((response) => {
         // Successfully sent
         console.log("Task sent successfully:", response.data);
+        toastSuccessNotify("Task created successfully!");       
         // Add the newly created task to the array
         setArray([...array, response.data]);
       })
       .catch((error) => {
         // Handle the error condition here.
         console.error("Error sending the task:", error);
+        toastErrorNotify("Something is wrong!");
       })
       .finally(() => {
         setSubmitting(false); // Set submitting back to false after the request is completed
@@ -71,10 +74,12 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
         console.log("Group sent successfully:", response.data);
         // Add the newly created group to the array
         setGroups([...groups, response.data]);
+        toastSuccessNotify("Group created successfully!");
       })
       .catch((error) => {
         // Handle the error condition here.
         console.error("Error sending the Group:", error);
+        toastErrorNotify("Something is wrong!");
       })
       .finally(() => {
         setSubmitting(false); // Set submitting back to false after the request is completed

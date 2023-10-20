@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdDelete } from 'react-icons/md';
+import { toastSuccessNotify } from "../helper/ToastNotify";
 
 const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   const [isGroupVisible, setGroupVisible] = useState(false);
@@ -10,7 +11,7 @@ const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       .delete(`${BASE_URL}/groups/${groupId}`)
       .then((response) => {
         console.log(`Group ${groupId} deleted successfully.`);
-  
+        toastSuccessNotify("Group deleted successfully!"); 
         // Set group info to null when group is deleted
         const updatedTasks = array.map((task) => {
           if (task.group === groupId) {

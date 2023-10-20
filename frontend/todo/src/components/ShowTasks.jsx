@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditItemForm from "./EditItemForm";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { MdDelete, MdDoneAll, MdOutlineKeyboardBackspace, MdEdit } from "react-icons/md";
 //!https://react-icons.github.io/react-icons
 
@@ -31,6 +32,7 @@ const ShowTasks = ({ array, setArray, groups, setGroups, BASE_URL }) => {
       setEditMode(false);
     } catch (error) {
       console.error("Error:", error);
+      toastErrorNotify("Something is wrong!");
     }
   };
 
@@ -48,8 +50,10 @@ const ShowTasks = ({ array, setArray, groups, setGroups, BASE_URL }) => {
       // Remove the item from the array
       const updatedArray = array.filter((item) => item.id !== id);
       setArray(updatedArray);
+      toastSuccessNotify("Task deleted successfully!");
     } catch (error) {
       console.error("Error:", error);
+      toastErrorNotify("Something is wrong!");
     }
   };
 

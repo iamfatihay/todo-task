@@ -2,6 +2,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MdSaveAs, MdCancel } from "react-icons/md";
+import { toastSuccessNotify } from "../helper/ToastNotify";
 
 const EditItemForm = ({ item, onSave, onCancel }) => {
   const [editedTitle, setEditedTitle] = useState(item.title);
@@ -18,9 +19,13 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
       is_completed: item.is_completed,
       is_deleted: item.is_deleted,
       group: item.group,
+      group_name: item.group_name,
     };
     
     onSave(editedItem) // Send update request to API
+    toastSuccessNotify("Saved successfully!");
+    onCancel(); // Close the edit bar
+
   };
 
   return (
