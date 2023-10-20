@@ -20,7 +20,8 @@ const ShowTasks = ({ array, setArray, groups, setGroups, BASE_URL }) => {
       });
 
       if (!response.ok) {
-        throw new Error("Update operation failed.");
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
 
       // Updating data

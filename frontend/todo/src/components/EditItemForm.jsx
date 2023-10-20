@@ -21,13 +21,6 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
     };
     
     onSave(editedItem) // Send update request to API
-      .then(() => {
-        // Successful update status
-      })
-      .catch((error) => {
-        console.error("Error updating item:", error);
-        // In case of error, you can show a notification to the user.
-      });
   };
 
   return (

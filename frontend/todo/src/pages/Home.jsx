@@ -8,38 +8,27 @@ const Home = ({ BASE_URL }) => {
   const [groups, setGroups] = useState([]);
 
   // Function to use to fetch tasks from API
-  const fetchTasks = async () => {
+  const fetchData = async (url, stateUpdater, errorMessage) => {
     try {
-      const response = await fetch(`${BASE_URL}/todo/`); // Specify API endpoint using BASE_URL
+      const response = await fetch(url);
       if (!response.ok) {
-        throw new Error("Could not retrieve data.");
+        throw new Error(errorMessage);
       }
       const data = await response.json();
-      setArray(data);
+      stateUpdater(data);
     } catch (error) {
-      console.error("Error:", error);
+      console.error(`Error: ${errorMessage}`, error);
+      // Show error notification to user
     }
   };
-
-  const fetchGroups = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}/groups`); // Specify API endpoint using BASE_URL
-      if (!response.ok) {
-        throw new Error("Could not retrieve data.");
-      }
-      const data = await response.json();
-      setGroups(data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  // Fetch data when page loads
+  
   useEffect(() => {
-    fetchTasks();
-    fetchGroups();
-    // eslint-disable-next-line
-  }, []);
+    fetchData(`${BASE_URL}/todo/`, setArray, "Could not retrieve tasks.");
+  }, [BASE_URL]);
+  
+  useEffect(() => {
+    fetchData(`${BASE_URL}/groups`, setGroups, "Could not retrieve groups.");
+  }, [BASE_URL]);
 
   return (
     <div>
