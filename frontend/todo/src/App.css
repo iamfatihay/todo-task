@@ -66,6 +66,11 @@ body {
   border-radius: 8px;
   border: none;
 }
+.select{
+  height: 20px;
+  font-size: 14px;
+  border-radius: 4px;
+}
 
 .btn-submit {
   /* display: block; */

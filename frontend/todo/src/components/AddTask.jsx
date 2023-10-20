@@ -28,15 +28,11 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       group: group,
     };
 
-    console.log("newTask:", newTask);
-
     setSubmitting(true); // Set submitting to true before making the request
 
     axios
       .post(`${BASE_URL}/todo/`, newTask)
       .then((response) => {
-        // API yanıtını konsola yazdır
-        console.log("API response:", response);
         // Successfully sent
         console.log("Task sent successfully:", response.data);
         // Add the newly created task to the array
@@ -58,6 +54,10 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   const sendGroup = (e) => {
     e.preventDefault();
 
+    if (group.trim() === "") {
+      return;
+    }
+    
     const newTask = {
       name: group,
     };
@@ -95,7 +95,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       <header className="header">
         <h1>TASK TRACKER</h1>
         <div className="header-btn">
-          <ShowGroups groups={groups} BASE_URL={BASE_URL} />
+          <ShowGroups groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL} />
           <button className="btn btn-1" onClick={handleButtonClick}>
             Add Task
           </button>
@@ -145,10 +145,12 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
           <div className="form-control">
             <label htmlFor="text">Group</label>
             <select
+              className="select"
               id="text"
               name="text"
               value={group}
               onChange={(e) => setGroup(e.target.value)}
+              placeholder="Select a group"
             >
               <option value="">Select a group</option>
               {groups.map((group) => (

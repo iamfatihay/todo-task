@@ -9,7 +9,7 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
   const [editedDueDate, setEditedDueDate] = useState(new Date());
 
   const handleSave = () => {
-    // Düzenleme işlemlerini burada yapabilir ve güncel veriyi API'ye gönderebilirsiniz
+    // You can make edits here and send updated data to the API
     const editedItem = {
       id: item.id,
       title: editedTitle,
@@ -19,24 +19,36 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
       is_deleted: item.is_deleted,
       group: item.group,
     };
-
-    onSave(editedItem); // API'ye güncelleme isteği gönder
+    
+    onSave(editedItem) // Send update request to API
+      .then(() => {
+        // Successful update status
+      })
+      .catch((error) => {
+        console.error("Error updating item:", error);
+        // In case of error, you can show a notification to the user.
+      });
   };
 
   return (
     <div>
       <div className="form-control">
-        <label htmlFor="text">Task</label>
+        <label htmlFor="title">Task</label>
         <input
           type="text"
+          id="title"
           value={editedTitle}
           onChange={(e) => setEditedTitle(e.target.value)}
         />
-        <label htmlFor="text">Description</label>
+      </div>
+      <div className="form-control">
+        <label htmlFor="description">Description</label>
         <input
-        value={editedDescription}
-        onChange={(e) => setEditedDescription(e.target.value)}
-      />
+          type="text"
+          id="description"
+          value={editedDescription}
+          onChange={(e) => setEditedDescription(e.target.value)}
+        />
       </div>
       <div className="form-control">
         <label htmlFor="day">Day & Time</label>
@@ -50,8 +62,8 @@ const EditItemForm = ({ item, onSave, onCancel }) => {
         />
       </div>
       <div className="buttons">
-        <button className="icons edit" onClick={handleSave}><MdSaveAs/></button>
-        <button className="icons edit" onClick={onCancel}><MdCancel/></button>
+        <button className="icons edit" onClick={handleSave}><MdSaveAs /></button>
+        <button className="icons edit" onClick={onCancel}><MdCancel /></button>
       </div>
     </div>
   );
