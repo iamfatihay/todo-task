@@ -1,10 +1,11 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import EditItemForm from "./EditItemForm";
-// import { FaTimesCircle } from "react-icons/fa";
+import { MdDelete, MdDoneAll, MdOutlineKeyboardBackspace, MdEdit } from "react-icons/md";
+
 //!https://react-icons.github.io/react-icons
 
 
-const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
+const ShowTasks = ({ array, setArray, groups, setGroups, BASE_URL }) => {
   const [editMode, setEditMode] = useState(false);
   const [editingItemId, setEditingItemId] = useState(null);
 
@@ -18,11 +19,11 @@ const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
         },
         body: JSON.stringify(editedItem), // Use the editedItem
       });
-  
+
       if (!response.ok) {
         throw new Error("Update operation failed.");
       }
-  
+
       // Updating data
       const updatedArray = array.map((item) => (item.id === id ? editedItem : item));
       setArray(updatedArray);
@@ -62,10 +63,19 @@ const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
     updateItem(editingItemId, editedItem);
   };
 
+  const toggleItemCompletion = async (id) => {
+    const itemToToggle = array.find((item) => item.id === id);
+    const updatedItem = { ...itemToToggle, is_completed: !itemToToggle.is_completed };
+
+    // Update the item with the toggled completion status
+    updateItem(id, updatedItem);
+  };
+
   return (
     <div>
       {editMode ? (
         <EditItemForm
+          groups={groups} setGroups={setGroups}
           item={array.find((item) => item.id === editingItemId)}
           onSave={handleEditItem}
           onCancel={() => setEditMode(false)}
@@ -76,12 +86,12 @@ const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
             <p style={{ textAlign: "center" }}>No Task to show, good job!</p>
           ) : (
             array.map((item) => (
-              <div key={item.id} className={` ${item.is_completed ? "done" : "not-yet"}`}>
+              <div key={item.id} className={` ${item.is_completed ? "box done" : "box not-yet"}`}>
                 <h3>{item.title}</h3>
 
                 {item.description && <p>{item.description}</p>}
                 <p>
-                  Due Date:{" "}
+                  Due Date :{" "}
                   {new Date(item.due_date).toLocaleString("de-DE", {
                     year: "numeric",
                     month: "2-digit",
@@ -90,16 +100,15 @@ const ShowTasks = ({ groups, setGroups, array, setArray, BASE_URL }) => {
                     minute: "2-digit",
                   })}
                 </p>
-                <p>Group: {item.group_name}</p>
+                <p>Group : {item.group_name}</p>
 
                 <div className="buttons">
-                  <button onClick={() => updateItem(item.id)}>
-                    {item.is_completed ? "Mark as Undone" : "Mark as Done"}
+                  <button className="icons" onClick={() => toggleItemCompletion(item.id)}>
+                    {item.is_completed ? <MdOutlineKeyboardBackspace /> : <MdDoneAll />}
                   </button>
-                  <button onClick={() => editItem(item.id)}>Düzenle</button>
-
-                  <button onClick={() => MarkAsDeleted(item.id)} className="delete-button">
-                    Delete
+                  <button className="icons" onClick={() => editItem(item.id)}><MdEdit /></button>
+                  <button className="icons" onClick={() => MarkAsDeleted(item.id)}>
+                    <MdDelete />
                   </button>
                 </div>
               </div>

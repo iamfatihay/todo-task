@@ -94,13 +94,16 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
     <div>
       <header className="header">
         <h1>TASK TRACKER</h1>
-        <button className="btn" onClick={handleButtonClick}>
-          ADD TASK BAR
-        </button>
-        <button className="btn" onClick={handleGroupButtonClick}>
-          ADD GROUP
-        </button>
-        <ShowGroups groups={groups} BASE_URL={BASE_URL} />
+        <div className="header-btn">
+          <ShowGroups groups={groups} BASE_URL={BASE_URL} />
+          <button className="btn btn-1" onClick={handleButtonClick}>
+            Add Task
+          </button>
+          <button className="btn btn-2" onClick={handleGroupButtonClick}>
+            Add Group
+          </button>
+        </div>
+
       </header>
       {isContainerVisible && (
         <form onSubmit={sendTask}>
