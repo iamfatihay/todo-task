@@ -9,7 +9,7 @@
 body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  background-image: linear-gradient(to top, #746f47 0%, #bbb8af 100%);
+  /* background-image: linear-gradient(to top, #746f47 0%, #bbb8af 100%); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -128,4 +128,14 @@ body {
   align-items: center;
   border-radius: 5px;
   margin: 2px;
+  padding: 0px 5px;
+  cursor: pointer;
+}
+.tasks-group, .tasks-group-date{
+  background-color: #888570;
+  border-radius: 5px;
+  margin: 2px;
+}
+.tasks-group-date{
+  background-color: #a8a481;
 }

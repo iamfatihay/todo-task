@@ -8,6 +8,7 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   const [isContainerVisible, setContainerVisible] = useState(false);
   const [isGroupContainerVisible, setGroupContainerVisible] = useState(false);
+  // const [isFilterContainerVisible, setFilterContainerVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [task, setTask] = useState("");
   const [group, setGroup] = useState("");
@@ -95,6 +96,10 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
     setGroupContainerVisible(!isGroupContainerVisible);
   };
 
+  // const handleFilterButtonClick = () => {
+  //   setFilterContainerVisible(!isFilterContainerVisible);
+  // };
+
   return (
     <div>
       <header className="header">
@@ -108,7 +113,6 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
             Add Group
           </button>
         </div>
-
       </header>
       {isContainerVisible && (
         <form onSubmit={sendTask}>
