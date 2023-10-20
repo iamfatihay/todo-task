@@ -3,10 +3,9 @@ import axios from 'axios';
 import { MdDelete } from 'react-icons/md';
 import { toastSuccessNotify } from "../helper/ToastNotify";
 
-const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
+const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL, tasksInSelectedGroup, setTasksInSelectedGroup, setShowAllTasks }) => {
   const [isGroupVisible, setGroupVisible] = useState(false);
-  const [isGroupsTasksVisible, setGroupsTasksVisible] = useState(false);
-  const [tasksInSelectedGroup, setTasksInSelectedGroup] = useState([]);
+  
 
   const handleDeleteGroup = (groupId) => {
     axios
@@ -33,11 +32,11 @@ const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
   };
 
   const handleGroupClick = (groupId) => {
-    // Burada seçilen grup ID'sini kullanarak o gruptaki görevleri filtreleyebilir ve gösterebilirsiniz.
+    // Here you can filter and show the tasks in that group using the selected group ID.
     const tasksInSelectedGroup = array.filter((task) => task.group === groupId);
-    // Elde edilen görevleri bir durumla saklayarak görüntüleyebilirsiniz.
+    // You can view the resulting tasks by storing them with a status.
     setTasksInSelectedGroup(tasksInSelectedGroup);
-    handleButtonClick()
+    setShowAllTasks(false);
   };
 
   useEffect(() => {
@@ -53,9 +52,7 @@ const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
     }
   }, [isGroupVisible, BASE_URL, setGroups]);
 
-  const handleButtonClick = () => {
-    setGroupsTasksVisible(!isGroupsTasksVisible);
-  };
+  
 
   return (
     <div>
@@ -63,12 +60,11 @@ const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
         {isGroupVisible ? 'Hide Groups' : 'Show Groups'}
       </button>
 
-
       {isGroupVisible && (
         <div>
           {groups.map((group) => (
-            <div className='group' key={group.id} onClick={() => handleGroupClick(group.id)} >
-              <p>{group.name}</p>
+            <div className='group' key={group.id}>
+              <p onClick={() => handleGroupClick(group.id)}>{group.name}</p>
               <button
                 className='icons'
                 onClick={() => {
@@ -80,21 +76,6 @@ const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL }) => {
               >
                 <MdDelete />
               </button>
-            </div>
-          ))}
-          {isGroupsTasksVisible && tasksInSelectedGroup.map((task) => (
-            <div key={task.id}>
-              <p className='tasks-group'>{task.title}</p>
-              <p className='tasks-group-date'>
-                  Due Date :{" "}
-                  {new Date(task.due_date).toLocaleString("de-DE", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
             </div>
           ))}
         </div>

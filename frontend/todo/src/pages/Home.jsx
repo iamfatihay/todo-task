@@ -6,6 +6,8 @@ import ShowTasks from "../components/ShowTasks";
 const Home = ({ BASE_URL }) => {
   const [array, setArray] = useState([]);
   const [groups, setGroups] = useState([]);
+  const [tasksInSelectedGroup, setTasksInSelectedGroup] = useState([]);
+  const [showAllTasks, setShowAllTasks] = useState(true);
 
   // Function to use to fetch tasks from API
   const fetchData = async (url, stateUpdater, errorMessage) => {
@@ -21,19 +23,22 @@ const Home = ({ BASE_URL }) => {
       // Show error notification to user
     }
   };
-  
+
   useEffect(() => {
     fetchData(`${BASE_URL}/todo/`, setArray, "Could not retrieve tasks.");
   }, [BASE_URL]);
-  
+
   useEffect(() => {
     fetchData(`${BASE_URL}/groups`, setGroups, "Could not retrieve groups.");
   }, [BASE_URL]);
 
   return (
     <div>
-      <AddTask groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}/>
-      <ShowTasks groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}/>   
+      <AddTask groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL} tasksInSelectedGroup={tasksInSelectedGroup}
+        setTasksInSelectedGroup={setTasksInSelectedGroup} setShowAllTasks={setShowAllTasks} />
+      <ShowTasks groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL} tasksInSelectedGroup={tasksInSelectedGroup}
+        setTasksInSelectedGroup={setTasksInSelectedGroup} setShowAllTasks={setShowAllTasks} showAllTasks={showAllTasks}
+      />
     </div>
   );
 };

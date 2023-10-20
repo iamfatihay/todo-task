@@ -9,7 +9,6 @@
 body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
-  /* background-image: linear-gradient(to top, #746f47 0%, #bbb8af 100%); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -22,13 +21,11 @@ body {
   margin: 5rem auto;
   max-width: 600px;
   padding: 1rem;
-  /* overflow: hidden; */
   border-radius: 20px;
 }
 
 .header {
   text-align: center;
-  /* margin: 10px; */
 }
 .header-btn{
   display: flex;
@@ -48,6 +45,9 @@ body {
 }
 .btn-1, .btn-2{
   max-height: 2rem;
+}
+.btn-4{
+  margin: 0 16.1rem;
 }
 
 .form-control {
@@ -73,12 +73,9 @@ body {
 }
 
 .btn-submit {
-  /* display: block; */
-  /* width: 100%; */
   padding: 0.7rem 2rem;
   color: #e0dede;
   background-color: rgb(37, 32, 37);
-  /* margin: 2rem 0; */
 }
 .box{
   border-radius: 8px;

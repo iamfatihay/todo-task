@@ -5,7 +5,7 @@ import axios from "axios";
 import ShowGroups from "./ShowGroups";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
-const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
+const AddTask = ({ groups, setGroups, array, setArray, BASE_URL, setTasksInSelectedGroup, tasksInSelectedGroup, setShowAllTasks }) => {
   const [isContainerVisible, setContainerVisible] = useState(false);
   const [isGroupContainerVisible, setGroupContainerVisible] = useState(false);
   // const [isFilterContainerVisible, setFilterContainerVisible] = useState(false);
@@ -96,16 +96,13 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
     setGroupContainerVisible(!isGroupContainerVisible);
   };
 
-  // const handleFilterButtonClick = () => {
-  //   setFilterContainerVisible(!isFilterContainerVisible);
-  // };
-
   return (
     <div>
       <header className="header">
         <h1>TASK TRACKER</h1>
         <div className="header-btn">
-          <ShowGroups groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL} />
+          <ShowGroups groups={groups} setGroups={setGroups} array={array} setArray={setArray} BASE_URL={BASE_URL}
+          tasksInSelectedGroup={tasksInSelectedGroup} setTasksInSelectedGroup={setTasksInSelectedGroup} setShowAllTasks={setShowAllTasks}/>
           <button className="btn btn-1" onClick={handleButtonClick}>
             Add Task
           </button>
@@ -137,11 +134,11 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
               placeholder="Add Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              disabled={submitting} // Disable the input while submitting
+              disabled={submitting} 
             />
           </div>
           <div className="form-control">
-            <label htmlFor="day">Day & Time</label>
+            <label htmlFor="day">Due Date</label>
             <DatePicker
               id="day"
               selected={selectedDate}
@@ -187,7 +184,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
               placeholder="Add group"
               value={group}
               onChange={(e) => setGroup(e.target.value)}
-              disabled={submitting} // Disable the input while submitting
+              disabled={submitting} 
             />
           </div>
           <div>
