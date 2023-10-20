@@ -43,7 +43,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       .catch((error) => {
         // Handle the error condition here.
         console.error("Error sending the task:", error);
-        toastErrorNotify("Something is wrong!");
+        toastErrorNotify("Check your inputs, may be too long!");
       })
       .finally(() => {
         setSubmitting(false); // Set submitting back to false after the request is completed
@@ -79,7 +79,7 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL }) => {
       .catch((error) => {
         // Handle the error condition here.
         console.error("Error sending the Group:", error);
-        toastErrorNotify("Something is wrong!");
+        toastErrorNotify("Check your inputs, may be too long!");
       })
       .finally(() => {
         setSubmitting(false); // Set submitting back to false after the request is completed
