@@ -1,0 +1,17 @@
+# PYTHON: 
+# FROM python
+FROM python:3.9.18-slim-bullseye
+
+# Base Direction for app:
+WORKDIR /backend
+
+# Copy file from local to docker:
+# COPY requirements.txt /backend/requirements.txt
+COPY . .
+
+# Run shell-command in docker before build:
+# RUN pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt 
+
+# Run after container:
+CMD python manage.py runserver 0.0.0.0:8000
