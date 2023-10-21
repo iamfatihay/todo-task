@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import { ToastContainer } from "react-toastify";
 
 const BASE_URL = "http://localhost:8000/api"; // Server address and API path
+// const BASE_URL = "https://iamfatihay.pythonanywhere.com/api"; // Server address and API path
+
 
 const App = () => {
   return (
