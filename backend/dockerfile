@@ -1,17 +1,29 @@
-# PYTHON: 
+# Python:
+# last version:
 # FROM python
-FROM python:3.9.18-slim-bullseye
+# light version
+FROM python:3.10.8-slim-bullseye
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Base Direction for app:
+# Set main folder in docker:
 WORKDIR /backend
 
 # Copy file from local to docker:
-# COPY requirements.txt /backend/requirements.txt
-COPY . .
+COPY requirements.txt /backend/requirements.txt
 
 # Run shell-command in docker before build:
-# RUN pip install -r requirements.txt --no-cache-dir
-RUN pip install -r requirements.txt 
+RUN pip install -r requirements.txt --no-cache-dir
 
-# Run after container:
-CMD python manage.py runserver 0.0.0.0:8000
+# copy all from local-files (.) to docker (/backend):
+COPY . /backend
+
+# Run shell-script:
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# App Port (optional)
+EXPOSE 8000
+
+# docker build ./backend -t backend_1
+# We use this to access the inside port from the outside port:
+# docker run -p 8000:8000 --name con_1 backend_1
+# docker run -d -p 8000:8000 --name con_1 backend_1   #! daemon mode (to run in the background)
