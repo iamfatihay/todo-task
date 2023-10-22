@@ -1,0 +1,26 @@
+version: "1.0" # optional
+
+services:
+
+    frontend:
+        # container_name: "anotherName"  # Give the container a different name.
+        image: "docker-compose-frontend"
+        build: ./frontend
+        ports:
+            - 3000:3000
+            - 80:3000
+        restart: on-failure
+        depends_on: # First run the service below.
+            - backend
+
+    backend:
+        # If there is, use it, if not, build it:
+        image: "docker-compose-backend"
+        # Project folder:
+        build: ./backend
+        # Ports:
+        ports: 
+            - 8000:8000 # External Port: Internal Port
+        restart: on-failure # In case of error, stop/start.
+        volumes: # physical paths (external:internal)
+            - $PWD/backend/db.sqlite3:/backend/db.sqlite3
