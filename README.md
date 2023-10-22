@@ -1,34 +1,34 @@
-# Todo Task
+# **Todo Task**
 
-## Description
+## **Description**
 
 This project is a ToDo Application. It consists of two main components: a backend and a frontend, designed to track the tasks. The backend is built using Django, while the frontend is developed with React.
 
-## Project Skeleton
+## **Project Skeleton**
 ```
 backend:
-    db.sqlite3:                  SQLite database file.
-    dockerfile:                  Configuration file for Docker containers.
+    db.sqlite3:                      SQLite database file.
+    dockerfile:                      Configuration file for Docker containers.
     main:
-        __init__.py:             Initial file for the Python package.
-        asgi.py:                 Entry file for ASGI application.
-        settings.py:             Django project settings.
-        urls.py:                 Django URL configurations.
-        wsgi.py:                 Entry file for WSGI application.
-    manage.py:                   Main file for Django project management commands.
-    requirements.txt:            List of Python packages used in the project.
+        __init__.py:                 Initial file for the Python package.
+        asgi.py:                     Entry file for ASGI application.
+        settings.py:                 Django project settings.
+        urls.py:                     Django URL configurations.
+        wsgi.py:                     Entry file for WSGI application.
+    manage.py:                       Main file for Django project management commands.
+    requirements.txt:                List of Python packages used in the project.
     todo:
-        __init__.py:             Initial file for the "todo" application.
-        admin.py:                Django admin panel configuration.
-        apps.py:                 Application configuration.
+        __init__.py:                 Initial file for the "todo" application.
+        admin.py:                    Django admin panel configuration.
+        apps.py:                     Application configuration.
         migrations:
-            0001_initial.py:     Initial database migration.
-            __init__.py:         Initial file for migrations.
-        models.py:               Database models.
-        serializers.py:          Django REST framework serializers.
-        tests.py:                Application tests.
-        urls.py:                 Application URL configurations.
-        views.py:                View functions.
+            0001_initial.py:         Initial database migration.
+            __init__.py:             Initial file for migrations.
+        models.py:                   Database models.
+        serializers.py:              Django REST framework serializers.
+        tests.py:                    Application tests.
+        urls.py:                     Application URL configurations.
+        views.py:                    View functions.
 
 frontend:
     dockerfile:                      Configuration file for Docker containers.
@@ -55,24 +55,43 @@ docker-compose.yml:                  It defines Docker application configuration
 todo.gif:                            A GIF related to the project
 
 ```
-## Expected Outcomes
+## **Expected Outcomes**
 <div >
 <img width="660px" src="./todo.gif"/>
 </div>
 
-## Technologies and Libraries
-- <span style="font-size: larger;">**React.js**</span>: A powerful JavaScript library for building interactive user interfaces.
-- <span style="font-size: larger;">**Redux**</span>: A predictable state management library for managing complex application states.
-- <span style="font-size: larger;">**Axios**</span>: A popular HTTP client for making API requests and handling responses.
-- <span style="font-size: larger;">**Tailwind CSS**</span>: A highly customizable CSS framework for creating stunning designs with minimal effort.
-- <span style="font-size: larger;">**React Router**</span>: A popular routing library for React applications, allowing for dynamic and intuitive navigation between different pages within the application.
-- <span style="font-size: larger;">**Formik and Yup**</span>: Powerful JavaScript libraries used for form management and validation. Yup is used to define validation schemas for form data, specifying the expected shape and constraints. On the other hand, Formik simplifies form state management, submission handling, and validation. Together, they ensure robust form validation and streamlined form handling for user input data.
-- <span style="font-size: larger;">**Custom Hooks**</span>: Custom hooks have been implemented to encapsulate reusable logic and improve code organization and reusability. These custom hooks include:
+## **Technologies and Libraries**
+This project utilizes the following technologies and libraries:
 
-    - **useAuthCall**: A custom hook that handles authentication-related API calls and state management.
-    - **useAxios**: A custom hook that simplifies making HTTP requests using Axios and manages the loading and error states.
-    - **useStockCall**: A custom hook that encapsulates the logic for making stock-related API calls and managing the stock-related states.
-## Usage with Docker
+### **Backend**:
+
+- Django: A high-level Python web framework for building web applications.
+- Django REST framework: A powerful and flexible toolkit for building Web APIs.
+- SQLite: A lightweight, serverless, and self-contained relational database.
+### **Frontend**:
+
+- React: A JavaScript library for building user interfaces.
+- Axios: A promise-based HTTP client for making requests to APIs.
+- react-toastify: A library for adding toast notifications to React applications.
+### **Development and Collaboration**:
+
+- GitHub: A web-based platform for version control and collaboration that hosts your project's repository.
+### **Docker**:
+
+- Docker: A platform for developing, shipping, and running applications in containers.
+### **Version Control**:
+
+- Git: A distributed version control system used for tracking changes in your project.
+### **Package Management**:
+
+- npm: The Node.js package manager used for managing frontend dependencies.
+- pip: A package manager for Python used for managing backend dependencies.
+### **Other Tools**:
+
+- Docker Compose: A tool for defining and running multi-container Docker applications.
+- Visual Studio Code: A code editor used for development.
+
+## **Usage with Docker**
 1. Install Docker Desktop and open if not already installed.
 2. Open the terminal.
 3. Pull the backend docker image:
@@ -88,7 +107,7 @@ todo.gif:                            A GIF related to the project
     ```
    docker run -d -p 3000:3000 --name front_3000 fatihay/frontend_1
 7. Open your web browser and visit  **http://localhost:3000**  to explore the Todo Application.
-## Installation
+## **Installation**
 
 To set up and run this project locally, follow these steps:
 
@@ -121,7 +140,7 @@ To set up and run this project locally, follow these steps:
 3. Install project dependencies:
     ```
     npm install
-## Usage
+## **Usage**
 
 ### Backend Usage
 1. Run the development server:
@@ -139,9 +158,5 @@ To set up and run this project locally, follow these steps:
 
 
 
-## Contribution
-Welcome contributions to enhance the Stock Application! If you find any bugs or have ideas for improvements, please open an issue or submit a pull request. I appreciate your valuable input!
-
-## License
-
-The Stock Application is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
+## **Contribution**
+Welcome contributions to enhance the Todo Application! If you find any bugs or have ideas for improvements, please open an issue or submit a pull request. I appreciate your valuable input!
