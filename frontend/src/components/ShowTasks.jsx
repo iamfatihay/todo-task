@@ -95,7 +95,7 @@ const ShowTasks = ({ array, setArray, groups, setGroups, BASE_URL, tasksInSelect
       ) : (
         <div>
           <button className="btn btn-4" onClick={() => setShowAllTasks(!showAllTasks)}>
-            {showAllTasks ? 'Filter' : 'All Tasks'}
+            {showAllTasks ? 'Filter by group' : 'All Tasks'}
           </button>
           {array.length === 0 ? (
             <p style={{ textAlign: "center" }}>No Task to show, good job!</p>

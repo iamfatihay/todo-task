@@ -52,6 +52,8 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL, setTasksInSelec
         setDescription(""); // Clear description
         setSelectedDate(null); // Clear selectedDate
         setGroup(""); // Clear group
+        setContainerVisible(false);
+        setGroupContainerVisible(false);
       });
   };
 
@@ -76,6 +78,8 @@ const AddTask = ({ groups, setGroups, array, setArray, BASE_URL, setTasksInSelec
         // Add the newly created group to the array
         setGroups([...groups, response.data]);
         toastSuccessNotify("Group created successfully!");
+        // setContainerVisible(false);
+        setGroupContainerVisible(false);
       })
       .catch((error) => {
         // Handle the error condition here.

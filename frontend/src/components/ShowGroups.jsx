@@ -21,6 +21,7 @@ const ShowGroups = ({ groups, setGroups, array, setArray, BASE_URL, tasksInSelec
           return task;
         });
         setArray(updatedTasks);
+        setGroupVisible(false);
 
         // Once the deletion is complete, remove it from the local group list
         const updatedGroups = groups.filter((group) => group.id !== groupId);
