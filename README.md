@@ -7,8 +7,8 @@ This project is a ToDo Application. It consists of two main components: a backen
 ## Project Skeleton
 ```
 backend:
-    db.sqlite3: SQLite database file.
-    dockerfile: Configuration file for Docker containers.
+    db.sqlite3:                  SQLite database file.
+    dockerfile:                  Configuration file for Docker containers.
     main:
         __init__.py:             Initial file for the Python package.
         asgi.py:                 Entry file for ASGI application.
