@@ -4,7 +4,7 @@ from .models import ToDoItem, TaskGroup
 
 class TodoItemSerializer(serializers.ModelSerializer):
     due_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-    group_name = serializers.StringRelatedField(source="group")  # We added a new field "group_name"
+    group_name = serializers.StringRelatedField(source="group")  # We added a new field "group_name", it's used to provide a more user-friendly representation of the related model.
     
     class Meta:
         model=ToDoItem
